@@ -103,3 +103,19 @@ WCAG 2.2 AA 대비 기본 토큰 산출(정상 배경 기준): ink/paper **14.62
 ## G. 자체 QA 판정
 
 **대표 3화면의 Chromium 인라인 로드 기반 시각·동작 검사 통과(한정적).** GitHub Pages 실제 배포/실사용 보조기술/실제 zoom에 대한 완전한 QA 완료 또는 사용자 승인으로 보고하지 않는다. PM 재검토 요청 단계.
+
+
+## R06 v0.2.2 신규 보완 및 재검수 (2026-11-18)
+
+- Chromium page.set_content 대체 방식으로 P01/P05/P09 각 1440/430/390/320/720px, 15개 조합 신규 검사. 15/15 scrollWidth가 viewport와 동일, DOM 이탈 요소 0, JS 예외 0. GitHub Pages 원격 렌더링 테스트는 아님.
+- P01/P05의 새 Pexels 사진 URL은 외부 접속이 차단되어, 테스트에서 새 로컬 의료 공간 콘셉트 SVG로 대체되는 것만 확인. P09 원본 유지.
+- P05 모바일 목차 링크 9개 확인, 위험 링크 클릭 후 #risks 해시 및 실제 섹션 타깃 확인.
+- P09 빈 필수값 3개 오류, 첫 오류 concern으로 포커스, 선택값 수정시 오류 0, 검토 focus=review-title, 수정=input-title, 데모 결과=result-title, 재시도=input-title 및 값 초기화 확인.
+- 모바일 메뉴 Enter 열기, Escape 닫기, 메뉴버튼으로 포커스 복귀. 데모 상호작용에서 POST 등 비GET 요청 0건 관찰.
+- Chromium CDP visualViewport.scale 2/4 핀치 배율을 측정하고 720/360 CSS viewport 리플로우를 별도 확인. 일반 Chrome UI Zoom 200/400% 자체 테스트는 미실시.
+- Chrome Accessibility Tree 자동 분석 수행. NVDA/VoiceOver 실제 사용성 검증 아님.
+- GitHub Pages URL 탐색 ERR_BLOCKED_BY_ADMINISTRATOR. 원격 12개 조합 및 실제 스톡 사진 로딩 확인 미실시.
+- 기존 R05 ZIP의 PNG 27개 존재 확인, 신규 R06 PNG 24개는 별도 ZIP으로 제공. GitHub 바이너리 캡처 업로드로 오인 금지.
+- 상세 원자료: docs/r06-qa-results.json. 심각도별 미해결 및 PM 조치: docs/r06-review.md.
+
+판정: 코드 수정과 Chromium 대체 테스트는 제한적으로 PASS, 공개 페이지/실제 사진/실제 확대/스크린리더 검수는 보류. 대표 시안 승인 전 PM 재검토 필요.

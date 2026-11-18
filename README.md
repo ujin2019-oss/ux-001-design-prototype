@@ -33,3 +33,7 @@ python -m http.server 8000
 UX-001-R04 v1.0 보완 대응: 1차 대표 화면 검토만 진행. P01~P12 확장 또는 최종 프론트엔드 개발 미착수. D안·Low-Fi 정보 구조 유지. 기존 Figma 파일 보존. 브랜드/색상/서체/이미지 모두 제안 상태.
 
 **주의:** Chromium 자동화 환경은 외부 URL과 localhost 네비게이션을 차단하므로, 대체 방식 `page.set_content`로 실제 Chromium DOM·CSS·JS 렌더링 및 인터랙션을 확인했습니다. GitHub Pages 원격 검증이나 실제 스크린리더/브라우저 줌 실사용과 동등하지 않습니다.
+
+
+## R06 이미지 방향과 제한
+P01/P05는 Pexels의 라이선스 확인 스톡 공간 이미지를 외부 CDN으로 우선 제공하고 실패 시 신규 오리지널 의료 공간 SVG로 전환합니다. P09와 기존 SVG 3개는 보존합니다. docs/image-assets.md, docs/r06-review.md, docs/qa-report.md 확인. 공개 URL 직접 화면 검증과 실사진 로드, 실제 데스크톱 UI zoom 및 NVDA/VoiceOver는 현재 환경에서 미실시.

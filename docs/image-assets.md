@@ -1,15 +1,30 @@
-# UX-001 v0.2.1 이미지 자산 및 라이선스 장부
+# UX-001 이미지 자산 명세 v0.2.2 Draft
 
-**상태:** 제안. 실제 의료진·의료기관·시술 부위·효과 사진은 사용하지 않음. 외부 사이트 사진을 무단 복제하거나 GitHub에 업로드하지 않음.
+확정 이미지 방향: P01=B(프리미엄 의료 상담 공간), P05=B(절제된 의료 관련 공간), P09=A(기존 추상 구성). 모든 사진은 가상 의료기관의 실제 촬영 시설이나 시술 효과를 입증하지 않습니다.
 
-| 파일 | 제작·권한 | 적용 위치 | ALT | 승인 상태 |
-|---|---|---|---|---|
-| `assets/images/hero-editorial.svg` | 본 작업에서 코드로 직접 작성한 오리지널 SVG. 제3자 이미지 복사 없음. 프로젝트 편집·사용 가능 | P01 Hero | 자연광과 아이보리 공간을 추상화한 오리지널 건축 무드 이미지. 실제 의료시설 사진이 아님 | Draft 제안 |
-| `assets/images/treatment-editorial.svg` | 본 작업에서 코드로 직접 작성한 오리지널 SVG | P01 시술 소개, P05 개요 | 아이보리 석재와 유리의 곡면을 표현한 추상 아트워크. 실제 시술 이미지가 아님 | Draft 제안 |
-| `assets/images/trust-editorial.svg` | 본 작업에서 코드로 직접 작성한 오리지널 SVG | P01 의료 신뢰 영역 | 아이보리 공간에서 빛과 그림자가 교차하는 추상 아트워크. 의료기관 실사나 의료진 사진이 아님 | Draft 제안 |
+## P01 Hero 스톡 사진
+- 출처/저작자: Pexels 7789614, Ivan Babydov, Desk and Chairs in Doctor Office
+- 원본: https://www.pexels.com/photo/desk-and-chairs-in-doctor-office-7789614/
+- 배포용 URL: https://images.pexels.com/photos/7789614/pexels-photo-7789614.jpeg?auto=compress&dpr=1&h=750&w=1260
+- 사용권: Pexels 페이지 Free to use 및 https://www.pexels.com/license/ 확인 (2026-11-18). 웹 사용 및 수정 가능, 제3자 보증/지지 암시 금지.
+- ALT: 차분한 뉴트럴 톤의 진료 상담 공간 예시. 가상 브랜드와 무관한 스톡 촬영 이미지
+- 적용: index.html의 Hero. 네트워크 차단 시 home-medical-concept.svg 대체.
 
-**실제 사진 후보(비적용 / 검토용 링크만)**
-- [Ela De Pure / Woman walking past a decorative reception desk](https://unsplash.com/photos/woman-walking-past-a-decorative-reception-desk-cefsod8L2mo) — 2025-11-23 공개, Unsplash License 표기. 브랜드 제품·모델 이미지가 들어 있어 가상 의료기관 사진으로 오인할 위험이 있으므로 적용하지 않음.
-- [Ela De Pure / Elegant bathroom with modern fixtures and decor](https://unsplash.com/photos/elegant-bathroom-with-modern-fixtures-and-decor-xS608no3sTk) — 2025-08-07 공개, Unsplash License 표기. 실제 진료실과 관계없는 공간 사진이므로 적용하지 않음.
+## P05 의료 관련 스톡 사진
+- 출처/저작자: Pexels 7789616, Ivan Babydov, Special, Medical Bed, Desk and Chairs in Medical Cabinet
+- 원본: https://www.pexels.com/photo/special-medical-bed-desk-and-chairs-in-medical-cabinet-7789616/
+- 배포용 URL: https://images.pexels.com/photos/7789616/pexels-photo-7789616.jpeg?cs=srgb&dl=pexels-babydov-7789616.jpg&fm=jpg
+- 사용권: Pexels License 동일. 실제 특정 시술·검증되지 않은 장비 효능·의료기관의 권위 표현 금지.
+- ALT: 인물과 특정 의료장비가 없는 절제된 진료 공간의 예시 사진. 실제 시술·의료기관 모습이 아님
+- 적용: pages/treatment.html의 개요 이미지. 네트워크 차단 시 treatment-medical-concept.svg 대체.
 
-이미지 파일은 CSS 배경 자리표시자 대신 `<img>` 요소로 적용했고, HTML에 적용 목적·ALT를 기록했다. 향후 상용 이미지나 생성형 AI 사진 채택 시 **출처, 제작 모델/약관, 사용권, 인물 초상권, 실제 의료시설 오인 위험**을 다시 심사해야 한다.
+## 신규 자체 제작 오리지널 의료 공간 이미지
+- assets/images/home-medical-concept.svg: 코드 기반 직접 제작 가상 상담/접수 공간, 외부 사진 장애시 사용, 프로젝트 사용 가능.
+- assets/images/treatment-medical-concept.svg: 코드 기반 직접 제작 가상 진료 환경, 외부 사진 장애시 사용, 프로젝트 사용 가능.
+- scripts/editorial-image.js: 외부 이미지 로드 실패시 로컬 SVG 및 해당 ALT/캡션 안내로 전환.
+
+## v0.2.1 원본 보존
+- hero-editorial.svg, treatment-editorial.svg, trust-editorial.svg 3개 삭제하지 않음. P01 보조 이미지와 신뢰 섹션에서 기존 A안 사용.
+- P09 HTML/JS, 상담 오류·검토·결과 흐름 변경 없음.
+
+중요: Pexels 사진은 외부 CDN 참조이고 GitHub에 사진 bytes를 복제하지 않음. 이 환경에서 실 CDN 이미지 로드 성공과 실제 공개 URL 사진 크롭은 검증하지 못했음. 인물/상표/실제 기관 오인 위험의 최종 법률 검수 필요. 모든 이미지 Draft 제안.
