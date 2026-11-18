@@ -1,0 +1,64 @@
+[
+  {
+    "page": "p01",
+    "width": 1440,
+    "test": "text-only zoom proxy 200%",
+    "overflow": false
+  },
+  {
+    "page": "p01",
+    "width": 390,
+    "test": "text-only zoom proxy 200%",
+    "overflow": false
+  },
+  {
+    "page": "p01",
+    "width": 1280,
+    "test": "text-only zoom proxy 400%",
+    "overflow": false
+  },
+  {
+    "page": "p05",
+    "width": 1440,
+    "test": "text-only zoom proxy 200%",
+    "overflow": false
+  },
+  {
+    "page": "p05",
+    "width": 390,
+    "test": "text-only zoom proxy 200%",
+    "overflow": false
+  },
+  {
+    "page": "p05",
+    "width": 1280,
+    "test": "text-only zoom proxy 400%",
+    "overflow": false
+  },
+  {
+    "page": "p09",
+    "width": 1440,
+    "test": "text-only zoom proxy 200%",
+    "overflow": false
+  },
+  {
+    "page": "p09",
+    "width": 390,
+    "test": "text-only zoom proxy 200%",
+    "overflow": false
+  },
+  {
+    "page": "p09",
+    "width": 1280,
+    "test": "text-only zoom proxy 400%",
+    "overflow": false
+  },
+  {
+    "test": "keyboard and requests",
+    "menuAfterEnter": "true",
+    "menuAfterEscape": "false",
+    "focusRestored": true,
+    "tabFromConcern": "goal",
+    "requests": []
+  }
+]

@@ -1,31 +1,105 @@
-# UX-001 자체 QA 보고서 v0.2 — Draft
+# UX-001-R04 QA 및 재검수 보고서 v0.2.1 — Draft
 
-검수일 2026-11-18 / 상태: **Partial — 브라우저 실측 불가**
+- 프로젝트: 프리미엄 미용 피부과 홈페이지 제작 (가상 포트폴리오)
+- 문서: UX-001 디자인 단계 자체 QA / 상태: PM 재검토 요청 전 자체 QA
+- 검사일: 2026-11-18
+- 기준: UX-001-R04 v1.0 및 후속 GitHub main 브랜치 지시
+- 검사 대상: P01 `index.html`, P05 `pages/treatment.html`, P09 `pages/consultation.html`
+- 원본: GitHub `main`의 v0.2.0 Draft. 기존 Figma 파일 수정 없음
 
-## 수행 및 결과
+## A. 실제 Chromium 브라우저 레이아웃 검사 (대체 로드 방식)
 
-1. Low-Fi PDF 원본 P01 PC 1쪽, P05 PC 9쪽, P09 PC 17쪽 실제 이미지 렌더링 및 시각 확인 완료. 모바일 PDF 각 화면의 개별 렌더링 재확인은 미완료.
-2. HTML 3개 페이지 정적 검사: 각 페이지 H1 1개, 내부 `.html` 상대 링크 파일 존재, 이미지 외부 참조 없음. 통과.
-3. JS 파일 2개 `node --check` 문법 검사 통과.
-4. P05 필수 영역 9개 코드 대조 완료: 개요, 대상/제한, 과정, 기대/한계, 위험/부작용, 회복, 비용, 근거, FAQ. 위험 정보는 아코디언 안에 숨기지 않음.
-5. P09 `select` 3개(예시 선택만) 및 `preventDefault`, 오류 시 결과 미이동, 검토 후 데모 결과, 재시도 코드 존재 확인. **실제 브라우저 기능 검증은 미완료**.
-6. 자동화 브라우저 실행 시 환경의 URL 접근 정책으로 `ERR_BLOCKED_BY_ADMINISTRATOR` 발생. 로컬 서버 HTTP 및 file:// 모두 차단됨. 브라우저 스크린샷/실측/실사용 QA 완료로 보고하지 않음.
+Playwright + 설치된 Chromium으로 HTML/CSS/JS와 SVG 자산을 **실제 브라우저 엔진에 인라인 로드(`page.set_content`)**하여 레이아웃 및 DOM 이벤트를 검사했다. `file://`, `http://127.0.0.1` URL 네비게이션은 이 실행 환경에서 `ERR_BLOCKED_BY_ADMINISTRATOR`이므로 웹 서버 URL에서의 수동 검수로 오인하지 말 것. 외부 웹폰트는 차단된 상태에서 시스템 대체 폰트를 사용했다. SVG 이미지는 테스트 중 data URI로 변환해 실제 렌더링했다.
 
-## 미검증 / 위험 목록
+- 검사 개수: 15종 (3페이지 × 1440·390·320·430·720px)
+- 가로 스크롤/요소 viewport 이탈/브라우저 JS 예외 검사: 15/15 통과
+- 이미지 로드: P01 3/3, P05 1/1, P09 해당 없음
+- 화면 캡처: `docs/screenshots/` 내부 27개 PNG; 고충실도 전체 화면 캡처 및 P09 상태별 캡처 포함
+- P05 위험 안내 본문을 6배로 늘려 확인: **가로 스크롤 없음**, 섹션 높이 자동 증가
 
-| ID | 심각도 | 조건 | 위험 | 수정/검증 지시 | 재검수 |
-|---|---|---|---|---|---|
-| QA-01 | High | 320/390/430/1440px | 가로 스크롤, 텍스트 겹침, 메뉴 및 CTA 잘림 | 실제 Chrome/Firefox 브라우저에서 scrollWidth와 viewport 비교, 화면 캡처 | 미실시 |
-| QA-02 | High | P09 빈 필수값/수정/검토/완료/재시도 | 잘못된 상태 전환 및 오류 포커스 | 실제 브라우저 키보드/마우스 시나리오 실행, 네트워크 패널로 전송 없음 확인 | 미실시 |
-| QA-03 | Medium | 200%/400% 확대 | 레이아웃 붕괴, 텍스트 잘림 | 브라우저 줌 및 320px reflow 검사 | 미실시 |
-| QA-04 | Medium | 키보드/스크린리더 | 모바일 메뉴 포커스, 오류 안내 낭독 문제 | Tab/Shift+Tab/Enter/Escape, NVDA/VoiceOver 점검 | 미실시 |
-| QA-05 | Medium | 색상 대비 | 토큰별 AA 대비 불충족 가능 | 색상 대비 도구로 본문 4.5:1, 큰 텍스트/UI 3:1 측정 | 미실시 |
-| QA-06 | Medium | 외부 웹폰트 차단 | 대체 폰트 줄바꿈 및 CLS | 네트워크 차단 환경에서 레이아웃/성능 측정 | 미실시 |
-| QA-07 | Medium | 실제 콘텐츠 증가 | P05 긴 위험·비용 문단, FAQ 증가 | 섹션 2~3배 더미 텍스트로 높이 자동 확장 확인 | 미실시 |
-| QA-08 | Low | 승인 전 화면 | CSS 이미지 자리표시자, 미확정 브랜드 | 승인된 이미지·브랜드로 교체, ALT 및 라이선스 재검증 | 대기 |
-| QA-09 | High | 의료·법률 | 미검증 의료정보/가상기관 고지 | 의료·법률 전문 검수 후 게시 가능 여부 판정 | 대기 |
-| QA-10 | Medium | IA 전체 | P02/P04/P07/P08/P10/P12 링크가 임시 대표 화면으로 연결 | 전체 확장 승인 후 실제 페이지 링크 연결 | 대기 |
+| 페이지 | CSS viewport | scrollWidth | 넘침 요소 | JS 예외 | 결과 | 증빙 |
+|---|---:|---:|---:|---:|---|---|
+| P01 | 1440px | 1440px | 0 | 0 | Pass | `docs/screenshots/p01_1440.png` |
+| P01 | 390px | 390px | 0 | 0 | Pass | `docs/screenshots/p01_390.png` |
+| P01 | 320px | 320px | 0 | 0 | Pass | `docs/screenshots/p01_320.png` |
+| P01 | 430px | 430px | 0 | 0 | Pass | `docs/screenshots/p01_430.png` |
+| P01 | 720px | 720px | 0 | 0 | Pass | `docs/screenshots/p01_720.png` |
+| P05 | 1440px | 1440px | 0 | 0 | Pass | `docs/screenshots/p05_1440.png` |
+| P05 | 390px | 390px | 0 | 0 | Pass | `docs/screenshots/p05_390.png` |
+| P05 | 320px | 320px | 0 | 0 | Pass | `docs/screenshots/p05_320.png` |
+| P05 | 430px | 430px | 0 | 0 | Pass | `docs/screenshots/p05_430.png` |
+| P05 | 720px | 720px | 0 | 0 | Pass | `docs/screenshots/p05_720.png` |
+| P09 | 1440px | 1440px | 0 | 0 | Pass | `docs/screenshots/p09_1440.png` |
+| P09 | 390px | 390px | 0 | 0 | Pass | `docs/screenshots/p09_390.png` |
+| P09 | 320px | 320px | 0 | 0 | Pass | `docs/screenshots/p09_320.png` |
+| P09 | 430px | 430px | 0 | 0 | Pass | `docs/screenshots/p09_430.png` |
+| P09 | 720px | 720px | 0 | 0 | Pass | `docs/screenshots/p09_720.png` |
 
-## 판정
+## B. 오류 재현·수정·재검수
 
-코드 초안 및 정적 검사는 부분 통과. **브라우저 반응형·접근성·기능 QA 미통과가 아니라 미실시 상태**이며 PM 대표 시안 승인 전에 실측 보완 필요. GitHub 저장소/커밋 및 공개 URL 미확인.
+| ID / 심각도 | 재현 조건 | 수정 | 재검수 결과 |
+|---|---|---|---|
+| R04-Q01 / High | P01/P05 390·320·430px, CTA `width:100%` + padding 계산 | `.btn{box-sizing:border-box}`, 작은 화면 너비 제한 및 유동 grid | 3페이지 × 4 기본 너비에서 scrollWidth=viewport, viewport 밖 요소 0 (Pass) |
+| R04-Q02 / Medium | P01 1440px H1 한글 단어 가운데 줄바꿈 | 제목 크기 축소, `word-break:keep-all` | 1440px 스크린샷에서 단어 분절 없는 2줄 타이틀 확인 (Pass) |
+| R04-Q03 / High | P09 유효 입력 후 검토/결과/재시도에서 포커스가 페이지 전체 제목으로 이동 | `#input-title`, `#review-title`, `#result-title`에 tabindex=-1, show() 단계 제목에 focus | 검토=review-title, 완료=result-title, 수정/재시도=input-title (Pass) |
+| R04-Q04 / High | P09 빈 필수값 3개 | 선택 오류 표시 및 첫 누락 필드 포커스, 오류 상태에서 다음 단계 차단 | 3개 오류, focus=concern, review/result 숨김 (Pass) |
+| R04-Q05 / Medium | P09 오류 수정 후 재제출 | 필드 change 시 aria-invalid와 개별 오류 제거 | 입력→검토→수정→검토→결과→재시도 (Pass) |
+| R04-Q06 / Medium | 메뉴 열기, Escape, 키보드 | Escape 닫기+메뉴 버튼 포커스 복귀, 1350px 이하 조기 메뉴 전환 | Enter expanded=true, Escape=false, 포커스 복귀, Tab 다음 입력 항목 이동 (Pass) |
+| R04-Q07 / Medium | 본문 텍스트 400% 확대 모사 시 1280px에서 내비게이션 넘침 | 중간 너비에서 메뉴로 조기 접기 | 텍스트-only 확대 모사 9회 전부 가로 넘침 없음 (Pass, 실제 browser zoom 아님) |
+
+## C. P09 데모 기능 검증 (390px, 실제 DOM 상호작용)
+
+- 빈 필수값 3개: 오류 3개, 첫 오류 `#concern`으로 포커스, 검토·결과 미노출
+- 수정 후 검토: 검토 영역 표시, 현재 `#review-title` 포커스, 실제 전송 미실행
+- 입력 수정 버튼: 입력 영역 복귀, `#input-title` 포커스
+- 검토 완료 버튼: 데모 결과 표시, `#result-title` 포커스
+- 다시 체험하기: `#input-title` 포커스, 값 초기화 확인
+- `page.on('request')` 관측: 데모 상호작용 과정 **요청 0개** (테스트 인라인 환경 한정)
+- 소스 검사: `fetch` / XHR / localStorage / cookies / form action로 실명·건강정보 전송 없음. select의 예시 값만 로컬 DOM에 반영.
+
+## D. 확대·키보드·대비 및 한계
+
+200%/400% 테스트는 HTML 루트 글꼴 크기를 200/400%로 바꿔 Chromium에 로드한 **텍스트 확대 모사**, 일반 브라우저 zoom과 동일하지 않다. 1280px에서 400%, 390/1440px에서 200%를 시험했다.
+
+| 페이지 | 뷰포트 | 확대 모사 | 판정 |
+|---|---:|---|---|
+| P01 | 1440px | text-only zoom proxy 200% | No overflow |
+| P01 | 390px | text-only zoom proxy 200% | No overflow |
+| P01 | 1280px | text-only zoom proxy 400% | No overflow |
+| P05 | 1440px | text-only zoom proxy 200% | No overflow |
+| P05 | 390px | text-only zoom proxy 200% | No overflow |
+| P05 | 1280px | text-only zoom proxy 400% | No overflow |
+| P09 | 1440px | text-only zoom proxy 200% | No overflow |
+| P09 | 390px | text-only zoom proxy 200% | No overflow |
+| P09 | 1280px | text-only zoom proxy 400% | No overflow |
+
+WCAG 2.2 AA 대비 기본 토큰 산출(정상 배경 기준): ink/paper **14.62:1**; muted/ivory **6.17:1**; accent/ivory **6.39:1**; error/paper **7.76:1**; focus/paper **7.08:1**. 단, 페이지 모든 조합/이미지 오버레이/브라우저 상태에 대한 자동 WCAG 평가 완료를 의미하지 않는다.
+
+- 키보드 시나리오: 메뉴 버튼 Enter 열기 → Escape 닫기 → 버튼으로 포커스 복귀; form select에서 Tab으로 다음 select 이동 (자동 Chromium 통과).
+- 실제 NVDA/VoiceOver 사용성 검증, 다양한 브라우저 간 차이 및 사용자 테스트는 미실시.
+- GitHub Pages의 실제 원격 배포 페이지 렌더링은 이 컨테이너의 URL 정책으로 미검증. GitHub 커밋/배포는 별도 API 및 외부 확인 결과를 따로 기록할 것.
+
+## E. 모바일 Low-Fi 시각 대조 (원본 PDF v1.2)
+
+| 원본 페이지 | 확인된 필수 순서 | v0.2.1 디자인 반영 | 차이 및 승인 필요성 |
+|---|---|---|---|
+| P01 모바일 2쪽 | 로고·메뉴 → 가상기관 → 히어로 → 고민 → 시술 → 신뢰 → 상담/예약 → 방문/FAQ → 푸터 | 주요 섹션·고지 유지, 카드/이미지·CTA 제공 | 방문·FAQ·예약 독립 페이지는 아직 제작 미승인. 해당 링크는 안내/대표 시안으로 연결 (후속 의사결정 필요) |
+| P05 모바일 10쪽 | 메뉴 → 가상기관 → 개요 → 대상 → 과정 → 기대/한계 → 위험 → 회복 → 비용 → 근거 → FAQ → 푸터 | 필수 9개 섹션 순서 보존; 위험 기본 노출 | 모바일에서는 aside 목차가 본문 앞에 위치, 시각적 재배치이며 콘텐츠 삭제 없음 |
+| P09 모바일 18쪽 | 메뉴 → 가상기관 → 상담 안내 → 채널 설명 → 데모 입력 → 비수집 고지 → 검토 → 결과 → 푸터 | 예시 선택, 단계별 화면, 오류·검토·결과, 고지 유지 | P11은 전체 확장 미승인으로 별도 페이지 미제작; 현재 결과는 P09 내부 데모 상태. 별도 P11은 다음 단계에서 일치 확인 필요 |
+
+원본은 실제 브라우저 화면이 아니라 PDF의 Low-Fi schematic임. 실제 상태 UX는 상태별 검증 기록에 따름.
+
+## F. 미해결 이슈
+
+| ID | 심각도 | 재현/영향 | 처리 제안 | 상태 |
+|---|---|---|---|---|
+| OPEN-01 | High | GitHub Pages에서 실제 원격 페이지 확인 필요 | GitHub 커밋 이후 PM 로컬/공개 브라우저에서 320·390·430·1440px 검증 | Pending |
+| OPEN-02 | Medium | 이미지가 사진 실사가 아닌 자체 제작 아트워크 시안 | PM 아트디렉션 검토 후 촬영/라이선스 확인 사진 채택 여부 결정 | Proposal |
+| OPEN-03 | Medium | 모바일 실제 NVDA/VoiceOver, 브라우저 실제 zoom 200·400% 미확인 | QA/FE 단계에서 실사용 장비 테스트 | Pending |
+| OPEN-04 | High | 의료·법률 검수·실제 사용자 테스트 없음 | 자료 확보 전 진료·시술 효과 정보 및 실제 예약 기능 금지 | Deferred |
+| OPEN-05 | Medium | P02~P12 미제작 | 사용자 대표 시안 승인 뒤 확장 | Deferred |
+| OPEN-06 | Low | Figma v0.1 전체 레이어 실측 재확인 불가 | 보존 후 차이 문서 유지, 검증 가능 시 별도 QA | Pending |
+
+## G. 자체 QA 판정
+
+**대표 3화면의 Chromium 인라인 로드 기반 시각·동작 검사 통과(한정적).** GitHub Pages 실제 배포/실사용 보조기술/실제 zoom에 대한 완전한 QA 완료 또는 사용자 승인으로 보고하지 않는다. PM 재검토 요청 단계.
