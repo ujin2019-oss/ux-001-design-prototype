@@ -28,5 +28,7 @@
   document.querySelector('#edit').addEventListener('click',()=>show('input'));
   document.querySelector('#complete').addEventListener('click',()=>show('result'));
   document.querySelector('#retry').addEventListener('click',()=>{form.reset();fields.forEach(k=>{form.elements[k].removeAttribute('aria-invalid');document.querySelector('#error-'+k).textContent='';});alert.classList.add('hidden');show('input');});
-  show('input');
+  // Initial load keeps the natural document focus order; focus moves on transitions only.
+  steps.review.setAttribute('aria-hidden','true');steps.result.setAttribute('aria-hidden','true');
+  progress[0].setAttribute('aria-current','step');
 })();
