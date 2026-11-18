@@ -1,0 +1,2 @@
+/* UX-001 design system v0.2 — proposal, not approved brand tokens */
+:root{--ivory:#f8f6f1;--paper:#fffefa;--warm:#eee9e2;--taupe:#b7a99a;--ink:#292824;--muted:#5f5c56;--accent:#64584c;--line:#dcd5cb;--error:#8d352f;--success:#345c48;--focus:#255c83;--font-body:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;--font-display:'Noto Serif KR','Nanum Myeongjo',serif;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;--container:1200px;--radius:3px;--shadow:0 15px 45px #2928240a}
