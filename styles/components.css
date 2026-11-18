@@ -16,3 +16,8 @@
 .trust-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(30px,5vw,80px);align-items:center}
 .trust-grid .editorial-photo{aspect-ratio:1.35}
 @media(max-width:800px){.trust-grid{grid-template-columns:minmax(0,1fr)}.trust-grid .editorial-photo{aspect-ratio:1.8}}
+
+/* UX-001 v0.2.2 R06 licensed medical-space editorial photography. */
+.editorial-photo img[data-fallback-src]{object-position:50% 50%;filter:saturate(.83) sepia(.06)}
+.editorial-photo:has(img[data-fallback-src]){background:#ded4c7}
+.editorial-photo:has(img[data-fallback-src]) figcaption{max-width:calc(100% - 32px)}

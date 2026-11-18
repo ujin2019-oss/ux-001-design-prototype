@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="940" viewBox="0 0 1200 940" role="img" aria-label="가상 의료 공간의 콘셉트 일러스트레이션"><defs>
+<linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6f1e9"/><stop offset=".55" stop-color="#ded3c5"/><stop offset="1" stop-color="#c9b8a7"/></linearGradient>
+<linearGradient id="floor" x1="0" y1="0" x2=".6" y2="1"><stop stop-color="#d9cfc1"/><stop offset="1" stop-color="#b8a99a"/></linearGradient>
+<linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c3ae93"/><stop offset="1" stop-color="#8e7660"/></linearGradient>
+<linearGradient id="stone" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faf8f3"/><stop offset=".52" stop-color="#dedbd3"/><stop offset="1" stop-color="#b4aaa0"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#eaf2ee"/><stop offset="1" stop-color="#c9d3d1"/></linearGradient>
+<radialGradient id="sun"><stop stop-color="#ffffff" stop-opacity=".82"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="14"/></filter><filter id="soft"><feGaussianBlur stdDeviation="4"/></filter>
+<pattern id="grain" width="46" height="46" patternUnits="userSpaceOnUse"><circle cx="2" cy="6" r="1" fill="#715c49" opacity=".045"/><circle cx="31" cy="20" r=".8" fill="#fff" opacity=".13"/></pattern></defs>
+<!-- R06 original concept space, not a real clinic -->
+<rect width="1200" height="940" fill="#ece4d9"/><polygon points="0,0 1200,0 1200,640 0,690" fill="url(#wall)"/><polygon points="0,690 1200,640 1200,940 0,940" fill="url(#floor)"/>
+<polygon points="0,0 300,0 270,695 0,690" fill="#e6ddd2"/><polygon points="300,0 1200,0 1200,102 290,125" fill="#eee7dc"/><path d="M335 95 Q770 70 1190 85" fill="none" stroke="#fff6e4" stroke-width="13" opacity=".67"/>
+<rect x="45" y="70" width="236" height="510" fill="#d4d7cf"/><rect x="62" y="78" width="200" height="486" fill="url(#glass)"/><path d="M160 78v488M62 310h200" stroke="#f5eee4" stroke-width="13"/><path d="M42 580h243" stroke="#aba495" stroke-width="10"/>
+<polygon points="66,565 254,565 630,880 420,900" fill="#fffaf0" opacity=".44"/><ellipse cx="890" cy="150" rx="380" ry="230" fill="url(#sun)"/>
+<rect x="417" y="172" width="656" height="483" rx="25" fill="#c9b6a2"/><path d="M470 635V300Q470 208 552 208h350q127 0 127 106v321" fill="#f7f0e3" stroke="#e7dbc9" stroke-width="16"/>
+<path d="M530 627V337q0-80 76-80h283q88 0 88 90v280" fill="#e4ded1"/><path d="M530 340q0-90 96-90h250q100 0 100 90" fill="none" stroke="#fae4b4" stroke-width="9" opacity=".7" filter="url(#soft)"/>
+<rect x="590" y="385" width="312" height="8" rx="4" fill="#b5a99a"/><rect x="630" y="355" width="25" height="30" rx="8" fill="#f5efe7"/><rect x="667" y="363" width="63" height="21" rx="4" fill="#d3c5b4"/><rect x="816" y="345" width="18" height="43" rx="8" fill="#d1bfa7"/><path d="M825 350q-45-44-36-88" stroke="#a4a38d" stroke-width="5" fill="none"/><path d="M825 350q34-52 65-42" stroke="#a4a38d" stroke-width="5" fill="none"/><ellipse cx="805" cy="280" rx="16" ry="8" transform="rotate(-25 805 280)" fill="#798270"/><ellipse cx="860" cy="290" rx="20" ry="8" transform="rotate(35 860 290)" fill="#8e9781"/>
+<ellipse cx="765" cy="778" rx="400" ry="54" fill="#817364" opacity=".17" filter="url(#blur)"/><polygon points="408,596 1080,590 1051,714 450,734" fill="url(#stone)"/><path d="M438 601h640l-27 22H431" fill="#fdf9ef"/><polygon points="449,732 1051,711 1045,751 454,776" fill="#a99a89"/><path d="M485 772l12 83M1016 748l-5 88" stroke="#847162" stroke-width="12"/>
+<ellipse cx="338" cy="805" rx="170" ry="46" fill="#8d8073" opacity=".25" filter="url(#blur)"/><path d="M206 747q-12-111 79-128 114-17 138 95l-13 79q-71 26-182-2z" fill="#d2c7bb"/><path d="M214 756q-17-107 85-113 103-6 112 92" stroke="#f4ede3" stroke-width="12" fill="none"/><ellipse cx="303" cy="790" rx="112" ry="39" fill="#c2b3a4"/>
+<path d="M130 693q-29-81-6-152" stroke="#6d7864" stroke-width="8" fill="none"/><path d="M130 610q-65-58-70-120M130 623q43-75 68-119M126 568q-20-87 5-132" stroke="#75836c" stroke-width="9"/><ellipse cx="67" cy="516" rx="45" ry="17" transform="rotate(41 67 516)" fill="#77866e"/><ellipse cx="185" cy="504" rx="54" ry="15" transform="rotate(-38 185 504)" fill="#829077"/><ellipse cx="130" cy="446" rx="38" ry="17" transform="rotate(-67 130 446)" fill="#88957d"/><path d="M90 668l23 83h66l22-83z" fill="#b7a596"/>
+<rect width="1200" height="940" fill="url(#grain)" opacity=".6"/>
+</svg>
